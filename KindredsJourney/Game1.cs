@@ -18,6 +18,13 @@ namespace KindredsJourney
         private KeyboardController keyboard;
         private MouseController mouse;
 
+        // The SpriteFont Description used to draw text.
+        private SpriteFont font;
+        // Defines the position to draw the text at.
+        private Vector2 textPosition;
+        // Defines the origin used when drawing the score text.
+        private Vector2 textOrigin;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -33,6 +40,10 @@ namespace KindredsJourney
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = Content.Load<SpriteFont>("fonts/File");
+
+            textPosition = new Vector2(Window.ClientBounds.Width * 0.3f, Window.ClientBounds.Height * 0.6f);
+            textOrigin = new Vector2(0, 0);
 
             // Player sprite
             Texture2D playerTexture = Content.Load<Texture2D>("images/mario");
@@ -69,11 +80,12 @@ namespace KindredsJourney
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.BlueViolet);
 
             spriteBatch.Begin();
 
             player.Draw(spriteBatch);
+            spriteBatch.DrawString(font, "Credits\nProgram Made By: Collin White\nSprites from Carmen Canvas", textPosition, Color.White, 0.0f, textOrigin, 1.0f, SpriteEffects.None, 0.0f);
 
             spriteBatch.End();
 

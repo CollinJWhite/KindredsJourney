@@ -38,3 +38,4 @@ C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\
 C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\bin\Debug\net9.0\Content\images\KindredLogo.xnb
 C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\bin\Debug\net9.0\Content\images\PlayerSprites.xnb
 C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\bin\Debug\net9.0\Content\images\mario.xnb
+C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\bin\Debug\net9.0\Content\fonts\File.xnb
