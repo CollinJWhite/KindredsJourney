@@ -1,2 +1,4 @@
-﻿using var game = new KindredsJourney.Game1();
+﻿using KindredsJourney;
+
+using var game = new Game1();
 game.Run();
