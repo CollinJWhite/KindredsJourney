@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KindredsJourney")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c7401cc585092588f103b616462ae50898984c7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0ec586b42ea594ecd67d6eb9cad869bdbf625e2")]
 [assembly: System.Reflection.AssemblyProductAttribute("KindredsJourney")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KindredsJourney")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

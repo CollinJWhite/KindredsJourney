@@ -4,9 +4,15 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/cjwhi/OneDrive - The Ohio State University/OSU Semesters/Au26 Semester/CSE 3902 Games/Sprint 0/KindredsJourney/KindredsJourney/Content/fonts/File.spritefont</File>
     <File>C:/Users/cjwhi/OneDrive - The Ohio State University/OSU Semesters/Au26 Semester/CSE 3902 Games/Sprint 0/KindredsJourney/KindredsJourney/Content/images/KindredLogo.png</File>
+    <File>C:/Users/cjwhi/OneDrive - The Ohio State University/OSU Semesters/Au26 Semester/CSE 3902 Games/Sprint 0/KindredsJourney/KindredsJourney/Content/images/mario.png</File>
+    <File>C:/Users/cjwhi/OneDrive - The Ohio State University/OSU Semesters/Au26 Semester/CSE 3902 Games/Sprint 0/KindredsJourney/KindredsJourney/Content/images/PlayerSprites.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

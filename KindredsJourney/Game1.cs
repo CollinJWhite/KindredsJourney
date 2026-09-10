@@ -2,72 +2,94 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace KindredsJourney;
+using KindredsJourney.Controllers;
+using KindredsJourney.Commands;
+using KindredsJourney.Players;
+using KindredsJourney.Sprites;
 
-public class Game1 : Game
+namespace KindredsJourney
 {
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
-    private Texture2D _logo;
-
-    public Game1()
+    public class Game1 : Game
     {
-        _graphics = new GraphicsDeviceManager(this);
-        Content.RootDirectory = "Content";
-        IsMouseVisible = true;
-    }
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
 
-    protected override void Initialize()
-    {
-        // TODO: Add your initialization logic here
+        private IPlayer player;
+        private KeyboardController keyboard;
+        private MouseController mouse;
 
-        base.Initialize();
-    }
+        // The SpriteFont Description used to draw text.
+        private SpriteFont font;
+        // Defines the position to draw the text at.
+        private Vector2 textPosition;
+        // Defines the origin used when drawing the score text.
+        private Vector2 textOrigin;
 
-    protected override void LoadContent()
-    {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
+        public Game1()
+        {
+            graphics = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+        }
 
-        // TODO: use this.Content to load your game content here
-        _logo = Content.Load<Texture2D>("images/KindredLogo");
-    }
+        protected override void Initialize()
+        {
+            IsMouseVisible = true;
+            base.Initialize();
+        }
 
-    protected override void Update(GameTime gameTime)
-    {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
+        protected override void LoadContent()
+        {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = Content.Load<SpriteFont>("fonts/File");
 
-        // TODO: Add your update logic here
+            textPosition = new Vector2(Window.ClientBounds.Width * 0.3f, Window.ClientBounds.Height * 0.6f);
+            textOrigin = new Vector2(0, 0);
 
-        base.Update(gameTime);
-    }
+            // Player sprite
+            Texture2D playerTexture = Content.Load<Texture2D>("images/mario");
+            ISprite playerSprite = new KindredSprite(playerTexture);
 
-    protected override void Draw(GameTime gameTime)
-    {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+            // Player instance (requires starting position!)
+            Vector2 startingPosition = new Vector2(
+                (Window.ClientBounds.Width - playerSprite.Width) * 0.5f,
+                (Window.ClientBounds.Height - playerSprite.Height) * 0.5f);
+            player = new Player(playerSprite, startingPosition);
 
-        // Begin the sprite batch to prepare for rendering.
-        _spriteBatch.Begin();
+            // Controller
+            keyboard = new KeyboardController(new IdleCommand(player));
 
-        // Draw the logo texture
-        _spriteBatch.Draw(
-            _logo,              // texture
-            new Vector2(        // position
-                (Window.ClientBounds.Width * 0.5f),
-                (Window.ClientBounds.Height * 0.5f)),
-            null,               // sourceRectangle
-            Color.Green,        // color
-            0.0f,               // rotation
-            new Vector2(                // origin
-                _logo.Width,
-                _logo.Height) * 0.5f,    
-                0.25f,          // scale
-            SpriteEffects.None, // effects
-            0.0f                // layerDepth
-        );
-        // Always end the sprite batch when finished.
-        _spriteBatch.End();
+            keyboard.RegisterCommand(Keys.W, new MoveUpCommand(player));
+            keyboard.RegisterCommand(Keys.S, new MoveDownCommand(player));
+            keyboard.RegisterCommand(Keys.A, new MoveLeftCommand(player));
+            keyboard.RegisterCommand(Keys.D, new MoveRightCommand(player));
 
-        base.Draw(gameTime);
+            mouse = new MouseController(new TeleportCommand(player));
+        }
+
+        protected override void Update(GameTime gameTime)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+
+            keyboard.Update();
+            mouse.Update();
+            player.Update();
+
+            base.Update(gameTime);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.BlueViolet);
+
+            spriteBatch.Begin();
+
+            player.Draw(spriteBatch);
+            spriteBatch.DrawString(font, "Credits\nProgram Made By: Collin White\nSprites from Carmen Canvas", textPosition, Color.White, 0.0f, textOrigin, 1.0f, SpriteEffects.None, 0.0f);
+
+            spriteBatch.End();
+
+            base.Draw(gameTime);
+        }
     }
 }
