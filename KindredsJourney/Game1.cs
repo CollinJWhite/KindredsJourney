@@ -2,72 +2,82 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace KindredsJourney;
+using KindredsJourney.Controllers;
+using KindredsJourney.Commands;
+using KindredsJourney.Players;
+using KindredsJourney.Sprites;
 
-public class Game1 : Game
+namespace KindredsJourney
 {
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
-    private Texture2D _logo;
-
-    public Game1()
+    public class Game1 : Game
     {
-        _graphics = new GraphicsDeviceManager(this);
-        Content.RootDirectory = "Content";
-        IsMouseVisible = true;
-    }
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
 
-    protected override void Initialize()
-    {
-        // TODO: Add your initialization logic here
+        private IPlayer player;
+        private KeyboardController keyboard;
+        private MouseController mouse;
 
-        base.Initialize();
-    }
+        public Game1()
+        {
+            graphics = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+        }
 
-    protected override void LoadContent()
-    {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
+        protected override void Initialize()
+        {
+            IsMouseVisible = true;
+            base.Initialize();
+        }
 
-        // TODO: use this.Content to load your game content here
-        _logo = Content.Load<Texture2D>("images/KindredLogo");
-    }
+        protected override void LoadContent()
+        {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
-    protected override void Update(GameTime gameTime)
-    {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
+            // Player sprite
+            Texture2D playerTexture = Content.Load<Texture2D>("images/mario");
+            ISprite playerSprite = new KindredSprite(playerTexture);
 
-        // TODO: Add your update logic here
+            // Player instance (requires starting position!)
+            Vector2 startingPosition = new Vector2(
+                (Window.ClientBounds.Width - playerSprite.Width) * 0.5f,
+                (Window.ClientBounds.Height - playerSprite.Height) * 0.5f);
+            player = new Player(playerSprite, startingPosition);
 
-        base.Update(gameTime);
-    }
+            // Controller
+            keyboard = new KeyboardController(new IdleCommand(player));
 
-    protected override void Draw(GameTime gameTime)
-    {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+            keyboard.RegisterCommand(Keys.W, new MoveUpCommand(player));
+            keyboard.RegisterCommand(Keys.S, new MoveDownCommand(player));
+            keyboard.RegisterCommand(Keys.A, new MoveLeftCommand(player));
+            keyboard.RegisterCommand(Keys.D, new MoveRightCommand(player));
 
-        // Begin the sprite batch to prepare for rendering.
-        _spriteBatch.Begin();
+            mouse = new MouseController(new TeleportCommand(player));
+        }
 
-        // Draw the logo texture
-        _spriteBatch.Draw(
-            _logo,              // texture
-            new Vector2(        // position
-                (Window.ClientBounds.Width * 0.5f),
-                (Window.ClientBounds.Height * 0.5f)),
-            null,               // sourceRectangle
-            Color.Green,        // color
-            0.0f,               // rotation
-            new Vector2(                // origin
-                _logo.Width,
-                _logo.Height) * 0.5f,    
-                0.25f,          // scale
-            SpriteEffects.None, // effects
-            0.0f                // layerDepth
-        );
-        // Always end the sprite batch when finished.
-        _spriteBatch.End();
+        protected override void Update(GameTime gameTime)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
 
-        base.Draw(gameTime);
+            keyboard.Update();
+            mouse.Update();
+            player.Update();
+
+            base.Update(gameTime);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.Black);
+
+            spriteBatch.Begin();
+
+            player.Draw(spriteBatch);
+
+            spriteBatch.End();
+
+            base.Draw(gameTime);
+        }
     }
 }

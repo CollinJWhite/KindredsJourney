@@ -1,4 +1,3 @@
-C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\bin\Debug\net9.0\Content\images\KindredLogo.xnb
 C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\bin\Debug\net9.0\KindredsJourney.exe
 C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\bin\Debug\net9.0\KindredsJourney.deps.json
 C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\bin\Debug\net9.0\KindredsJourney.runtimeconfig.json
@@ -35,3 +34,7 @@ C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\
 C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\obj\Debug\net9.0\KindredsJourney.pdb
 C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\obj\Debug\net9.0\KindredsJourney.genruntimeconfig.cache
 C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\obj\Debug\net9.0\ref\KindredsJourney.dll
+C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\obj\Debug\net9.0\KindredsJourney.sourcelink.json
+C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\bin\Debug\net9.0\Content\images\KindredLogo.xnb
+C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\bin\Debug\net9.0\Content\images\PlayerSprites.xnb
+C:\Users\cjwhi\OneDrive - The Ohio State University\OSU Semesters\Au26 Semester\CSE 3902 Games\Sprint 0\KindredsJourney\KindredsJourney\bin\Debug\net9.0\Content\images\mario.xnb
